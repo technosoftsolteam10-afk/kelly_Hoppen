@@ -108,6 +108,114 @@ function slugify($text){
 		.site-header .header-right .search-toggle i {
 			color: #000;
 		}
+
+        .inquiry-btn{
+            background-color:black !important;
+            color:white !important;
+            padding:13px 25px;
+                width: fit-content;
+        }
+        .home .full-header{
+           position: relative;
+           z-index:99;
+        }
+
+      
+#productInquiryModal .modal-content {
+    background-color: #e9e2d9;
+    border-radius: 0;
+}
+
+        
+        #productInquiryModal .form-control {
+            border: none;
+            border-bottom: 1px solid #000;
+            border-radius: 0;
+            background-color: transparent;
+            box-shadow: none;
+            padding-left: 0;
+        }
+
+  
+        #productInquiryModal .form-control:focus {
+            border-bottom: 2px solid #000;
+            outline: none;
+            box-shadow: none;
+        }
+
+        #productInquiryModal textarea.form-control {
+            resize: none;
+        }
+
+    
+        #productInquiryModal label {
+            font-weight: 500;
+        }
+
+        #productInquiryModal .close {
+            opacity: 1;
+        }
+        #productInquiryModal label {
+            color: #000;
+        }
+
+
+        #productInquiryModal .text-danger {
+            color: #000 !important;
+        }
+
+        #productInquiryModal .btn-secondary {
+            background-color: transparent;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 0;
+        }
+
+
+        #productInquiryModal .btn-secondary:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+
+        #productInquiryModal .btn-dark {
+            background-color: #000;
+            border: 1px solid #000;
+            color: #fff;
+            border-radius: 0;
+        }
+
+
+        #productInquiryModal .btn-dark:hover {
+            background-color: #111;
+            border-color: #111;
+        }
+       #productInquiryModal label.error {
+            color: #dc3545 !important;   /* red */
+            font-size: 13px;
+            margin-top: 6px;
+            display: block;
+        }
+
+       
+        #productInquiryModal .form-control.is-invalid {
+            border-bottom: 2px solid #dc3545 !important;
+            color: #dc3545;
+        }
+
+        
+        #productInquiryModal .form-control.is-invalid::placeholder {
+            color: #dc3545;
+        }
+       
+     
+
+       
+       
+      
+        #productInquiryModal .form-control.is-invalid:focus {
+            box-shadow: none;
+        }
 	</style>
 
 </head>
@@ -136,6 +244,12 @@ function slugify($text){
                                         <div class="description">
                                             <p><?= $product['txt2']??'' ?></p>
                                         </div>
+                                <a href="javascript:void(0);"
+                                        class="inquiry-btn"
+                                        data-toggle="modal"
+                                        data-target="#productInquiryModal">
+                                            Inquiry Now
+                                        </a>
                                         <!-- <p class="popup-finish">Finish <span class="active-finish">Chrome</span></p>
 
                                         <div class="popup-colors">
@@ -197,7 +311,7 @@ function slugify($text){
                                                                     </a>
                                                                     <div class="view-detail">
 														            <?php $slug = slugify($similar_product['model_name']); ?>
-                                                                     <a href="<?=BASE_URL?>products/<?= $slug ?>/<?= $similar_product['id'] ?>">
+                                                                     <a href="<?=BASE_URL?>product/<?= $slug ?>/<?= $similar_product['id'] ?>">
 															        <i class="fa fa-eye"></i> View Detail
 															
 														</a>
@@ -305,12 +419,208 @@ function slugify($text){
 			</div>
 		</div>
 
+
+<div class="modal fade" id="productInquiryModal" tabindex="-1" role="dialog" aria-labelledby="productInquiryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="productInquiryModalLabel" style="text-align:center;">Product Inquiry</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form  method="POST" id="inquiry_form">
+        <div class="modal-body">
+
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label>Name <span class="text-danger">*</span></label>
+              <input type="text" name="name" placeholder="Enter Name" class="form-control" >
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label>Email <span class="text-danger">*</span></label>
+              <input type="email" name="email"placeholder="Enter Email" class="form-control" >
+            </div>
+
+            <div class="col-12">
+              <label>Phone Number</label>
+              <input type="text" name="phone" placeholder="Enter Phone" class="form-control">
+            </div>
+
+          
+
+            <div class="col-12">
+              <label>Message</label>
+              <textarea name="message" class="form-control"  placeholder="Enter Message" rows="4"></textarea>
+            </div>
+
+
+             <div class="col-12" style="padding-top:20px;">
+               <?php
+                                            $b = "";
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                $a = rand(0, 9);
+                                                $b .= $a;
+                                           echo '<img src="' . BASE_URL . 'assets/captcha/' . $a . '.gif">';
+
+                                            }
+                                            ?>
+
+                                             <input type="hidden" name="captcha_match" value="<?= $b ?>" />
+                                                                 <input name="captcha" id="captcha" class="form-control" placeholder="Enter Captcha Code" type="text" >
+              
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+          <button type="button" id="cancelInquiry"  class="btn btn-secondary" data-dismiss="modal">
+            Cancel
+          </button>
+      
+
+          <button type="submit" id="submit" class="btn btn-dark">
+            
+            Submit Inquiry
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
         <?php include 'footer.php'; ?>
 
 	</div>
 
     <?php include 'scripts.php'; ?>
 
+<script>
+
+$(function () {
+$.validator.addMethod("matchCaptcha", function (value, element) {
+    return value === $("input[name='captcha_match']").val();
+}, "Captcha code does not match");
+    $("#inquiry_form").validate({
+        rules: {
+            name: { required: true, minlength: 3 },
+            email: { required: true, email: true },
+            phone: { digits: true, minlength: 7, maxlength: 15 },
+            message: { required: true, minlength: 10 },
+           captcha: {
+            required: true,
+            digits: true,
+            minlength: 5,
+            maxlength: 5,
+            matchCaptcha: true
+        }
+        },
+
+        messages: {
+            name: {
+                required: "Please enter your name",
+                minlength: "Name must be at least 3 characters"
+            },
+            email: {
+                required: "Please enter your email",
+                email: "Please enter a valid email"
+            },
+            phone: {
+                digits: "Phone must contain only numbers",
+                minlength: "Phone is too short",
+                maxlength: "Phone is too long"
+            },
+            message: {
+                required: "Please enter a message",
+                minlength: "Message must be at least 10 characters"
+            },
+            captcha: {
+                required: "Please enter the captcha code",
+                digits: "Captcha must be numbers only",
+                minlength: "Captcha must be 5 digits",
+                maxlength: "Captcha must be 5 digits"
+            }
+        },
+
+        errorElement: "label",
+        errorClass: "error",
+
+        highlight: function (element) {
+            $(element).addClass("is-invalid");
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("is-invalid");
+        },
+
+        submitHandler: function (form) {
+
+            var $form = $(form);
+            var $btn = $("#submit");
+            var $msg = $("#form-message");
+
+            $btn.prop("disabled", true).text("Sending...");
+
+            $.ajax({
+                type: "POST",
+                url: $form.attr("action"),
+                data: $form.serialize(),
+                dataType: "json",
+
+                success: function (res) {
+                    if (res.status === "success") {
+                        alert(res.message);   // ✅ SIMPLE ALERT
+
+                        $form[0].reset();
+                        $("#form-message").hide().html("");
+                    } else {
+                       alert(res.message); 
+                    }
+                },
+
+                error: function () {
+                    alert("Something went wrong. Please try again.");
+                },
+
+                complete: function () {
+                    $btn.prop("disabled", false).text("Submit Inquiry");
+                }
+            });
+
+            return false;
+        }
+    });
+$(document).on("click", "#cancelInquiry", function () {
+
+    var $form = $("#inquiry_form");
+
+    // Reset form fields
+    $form[0].reset();
+
+    // Remove validation error styles
+    $form.find(".is-invalid").removeClass("is-invalid");
+
+    // Remove error messages
+    $form.find("label.error").remove();
+
+    // Hide success/error message
+    $("#form-message").hide().html("");
+
+});
+});
+
+</script>
 </body>
 
 </html>
+
