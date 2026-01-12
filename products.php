@@ -140,8 +140,12 @@ function slugify($text)
 											<div class="col-lg-4 col-md-6 col-12">
 												<div class="product-box">
 													<div class="product-img">
-														<img src="<?= BASE_URL ?>assets/img/products/<?= $product['img1']; ?>"
-															alt="<?= htmlspecialchars($product['model_name']); ?>">
+														<?php if(!empty($product['img1'])):
+															echo "<img src=".BASE_URL."assets/img/products/". $product['img1'].
+																	"alt=" .htmlspecialchars($product['model_name']).">";
+															else:
+															echo "<img src=". BASE_URL ."assets/img/products/comingsoon.jpg";
+														endif;?> 
 													</div>
 
 													<div class="product-box-content">
