@@ -142,7 +142,7 @@
 								<section class="common-padding kelly-intro pb-0">
 									<div class="kelly-intro-content">
 										<h3 class="subtitle">Trusted partners</h3>
-										<h1>Find AXOR showrooms in<br> your area</h1>
+										<h1>Find Kelly Hoppen showrooms in<br> your area</h1>
 									</div>
 								</section>
 							</div>
