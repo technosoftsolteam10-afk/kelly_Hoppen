@@ -24,7 +24,7 @@
 			<div id="main-content" class="main-content">
 				<div id="primary" class="content-area">
 					<div id="content" class="site-content" role="main">
-                        <section class="breadcrumb-hero" style="background-image: url('https://assets.hansgrohe.com/celum/web/axw_new-bathroom-international-elegance_2240x1000.jpg?format=HBW48');">
+                        <section class="breadcrumb-hero" style="background-image: url('assets/img/products/a_s1.jpg');">
                             <div class="breadcrumb-hero-content">
                                 <h1>International elegance.</h1>
                                 <div><a href="#intro" class="scroll-on-btn description-primary">Scroll on</a></div>

@@ -32,7 +32,7 @@
 									data-columns1440="1" data-columns="1">
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('https://assets.hansgrohe.com/celum/web/axw_escape_the_ordinary_3800x2468_stage.jpg?format=HBW48');">
+											style="background-image: url('assets/img/products/s1.jpg');">
 											<div class="slider-content">
 												<h1>Escape the ordinary!</h1>
 												<a href="#" class="hero-btn">Discover Now</a>
@@ -41,7 +41,7 @@
 									</div>
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('https://assets.hansgrohe.com/celum/web/axw_stageslider_lever-handle_ambience_finishplus_3840x2160.jpg?format=HBW48');">
+											style="background-image: url('assets/img/products/s2.jpg');">
 											<div class="slider-content">
 												<h1>Escape the ordinary!</h1>
 												<a href="#" class="hero-btn">Discover Now</a>
@@ -50,7 +50,7 @@
 									</div>
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('https://assets.hansgrohe.com/celum/web/axw_service_individualization_axor_one_colors_group_3600x2546.jpg?format=HBW48');">
+											style="background-image: url('assets/img/products/s3.jpg');">
 											<div class="slider-content">
 												<h1>Escape the ordinary!</h1>
 												<a href="#" class="hero-btn">Discover Now</a>
