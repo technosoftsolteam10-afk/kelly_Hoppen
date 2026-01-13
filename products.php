@@ -1,7 +1,36 @@
 <?php
-include_once 'config/db_conn.php';
 
-$cateId = $_GET['cate'] ?? '';
+include_once 'config/db_conn.php';
+$cateId = isset($_GET['cate']) ? (int)$_GET['cate'] : 0;
+$page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page   = max(1, $page);
+$start=0;
+$per_page = 9;
+$start = ($page - 1) * $per_page;
+
+
+$countSql = "
+    SELECT COUNT(*)
+    FROM master_products
+    WHERE img1 IS NOT NULL 
+      AND img1 != ''
+";
+
+if ($cateId > 0) {
+    $countSql .= " AND cate_id = :cate_id";
+}
+
+$countStmt = $conn->prepare($countSql);
+
+if ($cateId > 0) {
+    $countStmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
+}
+
+$countStmt->execute();
+$total_records = $countStmt->fetchColumn();
+$total_pages = ceil($total_records / $per_page);
+
+
 
 $sql = "
     SELECT p.*, c.cate_name
@@ -14,14 +43,23 @@ if (!empty($cateId)) {
 	$sql .= " AND p.cate_id = :cate_id";
 }
 
+$sql .= " ORDER BY cate_id ASC LIMIT :start, :per_page";
+
+
 $stmt = $conn->prepare($sql);
 
 if (!empty($cateId)) {
-	$stmt->bindParam(':cate_id', $cateId, PDO::PARAM_INT);
+    $stmt->bindValue(':cate_id',$cateId, PDO::PARAM_INT);
 }
+
+$stmt->bindValue(':start', $start, PDO::PARAM_INT);
+$stmt->bindValue(':per_page',$per_page, PDO::PARAM_INT);
 
 $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 
 
 
@@ -94,6 +132,9 @@ function slugify($text)
 		.site-header .header-right .search-toggle i {
 			color: #000;
 		}
+		.patination{
+
+		}
 	</style>
 
 </head>
@@ -140,12 +181,12 @@ function slugify($text)
 											<div class="col-lg-4 col-md-6 col-12">
 												<div class="product-box">
 													<div class="product-img">
-														<?php if(!empty($product['img1'])):
-															echo "<img src=".BASE_URL."assets/img/products/". $product['img1'].
-																	"alt=" .htmlspecialchars($product['model_name']).">";
-															else:
-															echo "<img src=". BASE_URL ."assets/img/products/comingsoon.jpg";
-														endif;?> 
+														<?php if (!empty($product['img1'])):
+															echo  "<img src='" . BASE_URL . "assets/img/products/" . $product['img1'] .
+																"' alt=" . htmlspecialchars($product['model_name']) . ">";
+														else:
+															echo "<img src=" . BASE_URL . "assets/img/products/comingsoon.jpg";
+														endif; ?>
 													</div>
 
 													<div class="product-box-content">
@@ -168,6 +209,22 @@ function slugify($text)
 										</div>
 									<?php endif; ?>
 								</div>
+								<div class="pagination" style="display:flex;justify-content:center;gap: 10px;font-size:25px;">
+									<?php if ($page > 1):
+										echo '<a href="?page=' . ($page - 1) . '&cate=' . $cateId . '"><< Prev</a>';
+									endif;
+
+									for ($i = 1; $i <= $total_pages; $i++):
+										echo '<a href="?page=' . $i . '&cate=' . $cateId . '">' . $i . '</a>';
+
+									endfor;
+
+									if ($page < $total_pages):
+										echo '<a href="?page=' . ($page + 1) . '&cate=' . $cateId . '">Next >></a>';
+									endif; ?>
+								</div>
+
+
 
 
 

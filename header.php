@@ -130,7 +130,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                                 <a href="javascript:void(0)"><span
 
-                                                        class="menu-item-text">Bathroom</span></a>
+                                                        class="menu-item-text">Products</span></a>
 
                                             </li>
 
@@ -153,7 +153,9 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
                                             <li class="level-0 menu-item">
                                                 <a href="<?= BASE_URL ?>about-us"><span class="menu-item-text">About Us</span></a>
                                             </li>
-
+                                            <li class="level-0 menu-item">
+                                                <a href="<?= BASE_URL ?>brand"><span class="menu-item-text">Brand</span></a>
+                                            </li>
                                             <li class="level-0 menu-item">
                                                 <a href="<?= BASE_URL ?>contact"><span class="menu-item-text">Contact</span></a>
                                             </li>
@@ -166,7 +168,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             </div>
 
-                            <div class="col-lg-4 header-right">
+                            <!-- <div class="col-lg-4 header-right">
 
                                 <div class="header-page-link">
 
@@ -178,7 +180,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                                 </div>
 
-                            </div>
+                            </div> -->
 
                         </div>
 
@@ -221,7 +223,12 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h5>About Us</h5>
                     </a>
                 </div>
-
+                
+                <div>
+                    <a href="<?= BASE_URL ?>brand">
+                        <h5>Brand</h5>
+                    </a>
+                </div>
                 <div>
                     <a href="<?= BASE_URL ?>contact">
                         <h5>Contact</h5>
@@ -232,13 +239,13 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <div class="section-container p-l-r custom-sub-menu__inner" id="bathroom">
 
-                <div class="custom-sub-menu-heading">
+                <!-- <div class="custom-sub-menu-heading">
 
                     <h3 class="text-dark">Bathroom</h3>
 
                     <i class="fa-solid fa-arrow-right"></i>
 
-                </div>
+                </div> -->
 
 
 
@@ -257,7 +264,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
                           <?php if(!empty($categories)): ?> 
                                <?php foreach($categories as $category): ?> 
                             <div class="custom-sub-cat-item">
-      <h5><a href="<?= BASE_URL ?>products?cate=<?= $category['cate_id']; ?>">
+                                 <h5><a href="<?= BASE_URL ?>products?cate=<?= $category['cate_id']; ?>">
                                         <?= htmlspecialchars($category['cate_name']); ?>
                                     </a></h5>
                            

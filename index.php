@@ -6,10 +6,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Kelly Hoppen | Luxury Designer Sanitaryware Manufacturer – India & Global</title>
+	<title>Kelly hoppen™ | Luxury Designer Artificial Surface Manufacturer – India & Global</title>
 
-	<meta name="keywords" content="Kelly Hoppen">
-	<meta name="description" content="Kelly Hoppen">
+	<meta name="keywords" content="luxury designer Artificial Surface, premium ceramic Artificial Surface, modern washbasins manufacturer, luxury bathroom solutions India, high quality Artificial Surface exporter, luxury ceramic bathtubs, designer WCs, Artificial Surface manufacturer India">
+	<meta name="description" content="Discover Kelly hoppen™ – a luxury designer Artificial Surface brand from India, offering modern washbasins, bathtubs, WCs, and ceramic bathroom solutions. Elegant design, high performance, precision finish. Exporting to India, Europe, and the Middle East.">
 	<?php include_once 'config/db_conn.php'; ?>
 	<?php include 'links.php'; ?>
 
@@ -32,28 +32,28 @@
 									data-columns1440="1" data-columns="1">
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('assets/img/products/s1.jpg');">
+											style="background-image: url('assets/img/products/s_n_1.jpg');">
 											<div class="slider-content">
-												<h1>Escape the ordinary!</h1>
-												<a href="#" class="hero-btn">Discover Now</a>
+												<h1>Simplicity Made Luxurious</h1>
+												<!-- <a href="#" class="hero-btn">Discover Now</a> -->
 											</div>
 										</div>
 									</div>
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('assets/img/products/s2.jpg');">
+											style="background-image: url('assets/img/products/s_n_2.jpg');">
 											<div class="slider-content">
-												<h1>Escape the ordinary!</h1>
-												<a href="#" class="hero-btn">Discover Now</a>
+												<h1>Simplicity Made Luxurious</h1>
+												<!-- <a href="#" class="hero-btn">Discover Now</a> -->
 											</div>
 										</div>
 									</div>
 									<div class="item slick-slide">
 										<div class="item-content"
-											style="background-image: url('assets/img/products/s3.jpg');">
+											style="background-image: url('assets/img/products/s_n_3.jpg');">
 											<div class="slider-content">
-												<h1>Escape the ordinary!</h1>
-												<a href="#" class="hero-btn">Discover Now</a>
+												<h1>Simplicity Made Luxurious</h1>
+												<!-- <a href="#" class="hero-btn">Discover Now</a> -->
 											</div>
 										</div>
 									</div>
@@ -61,30 +61,35 @@
 							</div>
 						</section>
 
-						<section class="common-padding kelly-intro">
+						<!-- <section class="common-padding kelly-intro">
 							<div class="kelly-intro-content">
 								<h3 class="subtitle">From personalities for personalities</h3>
 								<h1>Mixers and showers that set the<br> standard</h1>
 							</div>
-						</section>
+						</section> -->
 
 						<section class="common-padding kelly-about bg-blue">
 							<div class="container">
 								<div class="row align-items-center">
 									<div class="col-lg-6 col-md-12 col-12">
-										<img src="https://assets.hansgrohe.com/celum/web/testbild_home_1.png?format=HBW29" alt="image-bath">
+										<img src="assets/img/products/Iconic_objects.jpg" alt="image-bath">
 									</div>
 									<div class="col-lg-6 col-md-12 col-12">
 										<div class="kelly-about-content">
 											<h2>Iconic objects for<br>design bathrooms</h2>
-											<p class="description-primary">AXOR conceives and manufactures iconic objects for luxury bathrooms. Developed in collaboration with world-renowned designers—Philippe Starck, Antonio Citterio, Jean-Marie Massaud and Barber Osgerby among them—the AXOR collections feature products in a wide variety of styles for the washbasin, bathtub and shower. To ensure a consistent visual language throughout any design bathroom, AXOR also offers a comprehensive range of bathroom accessories. In addition to mixers, showers and accessories, AXOR products for design bathrooms include thermostatic valves and waste systems featuring advanced AXOR concealed installation technology.</p>
+											<p class="description-primary" style="text-align:justify;">Iconic bathroom design is defined by balance, simplicity, and timeless elegance.
+												Freestanding bathtubs become sculptural centrepieces that anchor the space.
+												Floating vanities and wall-hung fittings create a calm, uncluttered aesthetic.
+												Natural materials like stone, wood, and textured surfaces add warmth and depth.
+												Soft lighting and refined metallic accents elevate everyday rituals into luxury.
+												Every iconic bathroom reflects harmony, functionality, and enduring design.</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</section>
 
-						<section class="common-padding kelly-about bg-orange">
+						<!-- <section class="common-padding kelly-about bg-orange">
 							<div class="container">
 								<div class="row align-items-center">
 									<div class="col-lg-6 col-md-12 col-12">
@@ -94,23 +99,29 @@
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-12 col-12">
-										<img src="https://assets.hansgrohe.com/celum/web/axw_service_axor_citterio_kitchen_mattblack_1350x1800.jpg?format=HBW29" alt="image-bath">
+										<img src="assets/img/products/home_2.jpg" alt="image-bath">
 									</div>
 								</div>
 							</div>
-						</section>
+						</section> -->
 
 						<section class="common-padding kelly-about bg-dark-blue">
 							<div class="container">
 								<div class="row align-items-center">
-									<div class="col-lg-6 col-md-12 col-12">
-										<img src="https://assets.hansgrohe.com/celum/web/axw_stageslider_lever-handle_ambience_finishplus_3840x2160.jpg?format=HBW48" alt="image-bath">
-									</div>
+
 									<div class="col-lg-6 col-md-12 col-12">
 										<div class="kelly-about-content">
-											<h2>Leaders in design. <br>Partners with AXOR.</h2>
-											<p class="description-primary">AXOR partners with some of the world’s leading designers and architects to create iconic objects for luxury bathrooms and kitchens. From Philippe Starck to Barber Osgerby, Antonio Citterio to Jean-Marie Massaud, Patricia Urquiola to nendo, Phoenix Design to Front, each AXOR design partner brings his, her or their individual style to collections and products developed and manufactured by AXOR to the highest standards of quality. Together with these renowned design partners, AXOR inspires and helps to enable architects, interior designers and the design-savvy public to shape water-related spaces that reflect the unique personality of the user</p>
+											<h2>Leaders in design <br>Partners with Kelly Hoppen</h2>
+											<p class="description-primary" style="text-align:justify;">Leaders in design are defined by vision, craftsmanship, and timeless appeal.
+												Partnering with Kelly Hoppen brings a shared philosophy of balance and elegance.
+												Every collaboration reflects a commitment to quality and refined simplicity.
+												Design innovation is guided by experience, precision, and attention to detail.
+												Together, form and function unite to create enduring design statements.
+												This partnership sets a new benchmark for contemporary luxury interiors.</p>
 										</div>
+									</div>
+									<div class="col-lg-6 col-md-12 col-12">
+										<img src="assets/img/products/leadership.jpg" alt="image-bath">
 									</div>
 								</div>
 							</div>
@@ -120,15 +131,15 @@
 							<div class="container">
 								<div class="row">
 									<div class="col-lg-6 col-md-6 col-12">
-										<div class="featured-category-box">
-											<img src="https://assets.hansgrohe.com/celum/web/axw_inspiration_distinctive_bathroom_concepts_overview_auer_03_1800x1350.jpg?format=HBW7" alt="category-img">
+										<div class="featured-category-box d-flex ">
+											<img src="assets/img/products/bathroom.jpg" alt="category-img">
 											<div class="content">
 												<h4>Bathroom Products</h4>
-												<a href="#">Discover Now</a>
+												<a href="<?= BASE_URL ?>products">Discover Now</a>
 											</div>
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-6 col-12">
+									<!-- <div class="col-lg-6 col-md-6 col-12">
 										<div class="featured-category-box">
 											<img src="https://assets.hansgrohe.com/celum/web/axw_service_axor_citterio_kitchen_stainlesssteel_2000x1500.jpg?format=HBW7" alt="category-img">
 											<div class="content">
@@ -137,26 +148,27 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
-								<section class="common-padding kelly-intro pb-0">
-									<div class="kelly-intro-content">
-										<h3 class="subtitle">Trusted partners</h3>
-										<h1>Find Kelly Hoppen showrooms in<br> your area</h1>
-									</div>
-								</section>
-							</div>
+									<section class="common-padding kelly-intro pb-0">
+										<div class="kelly-intro-content" >
+												<h3>Trusted partners</h3>
+												<h1>Find Kelly Hoppen showrooms in your area</h1>
+										</div>
+
+									</section>
+								</div>
 						</section>
 					</div>
 				</div>
 			</div>
 		</div>
 
-        <?php include 'footer.php'; ?>
+		<?php include 'footer.php'; ?>
 
 	</div>
 
-    <?php include 'scripts.php'; ?>
+	<?php include 'scripts.php'; ?>
 
 </body>
 
