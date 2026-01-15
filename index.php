@@ -139,16 +139,16 @@
 											</div>
 										</div>
 									</div>
-									<!-- <div class="col-lg-6 col-md-6 col-12">
+									 <div class="col-lg-6 col-md-6 col-12">
 										<div class="featured-category-box">
-											<img src="https://assets.hansgrohe.com/celum/web/axw_service_axor_citterio_kitchen_stainlesssteel_2000x1500.jpg?format=HBW7" alt="category-img">
-											<div class="content">
+											<img src="assets/img/products/new_product.jpg" alt="category-img">
+											<!-- <div class="content">
 												<h4>Kitchen Products</h4>
 												<a href="#">Discover Now</a>
-											</div>
+											</div> -->
 										</div>
-									</div>
-								</div> -->
+									</div> 
+								</div> 
 
 									<section class="common-padding kelly-intro pb-0">
 										<div class="kelly-intro-content-a">

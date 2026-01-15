@@ -91,19 +91,19 @@
                                                             <h2>Customer Service</h2>
                                                         </div>
                                                         <div class="item-content">
-                                                            <p class="description-primary">Monday to Friday</p>
-                                                            <p class="description-primary">8:00am – 4:00pm Sydney, NSW time (UTC +10)</p>
-                                                            <p class="description-primary">Saturday and Sunday closed</p>
+                                                            <p class="description-primary">Monday to Saturday</p>
+                                                            <p class="description-primary">9:00am – 6:30pm </p>
+                                                            <p class="description-primary">Sunday closed</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="info-item">
                                                         <div class="item-tilte">
-                                                            <h2>Returns</h2>
+                                                            <h2>Address</h2>
                                                         </div>
                                                         <div class="item-content small-width">
-                                                            <p class="description-primary">For information on Returns and Refunds, please click here.</p>
+                                                            <p class="description-primary">14,Lalpar Ind.Estate-5,</br>NH-8A,Morbi,Gujarat,India.</p>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -52,13 +52,13 @@ $washBasinCats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <div class="footer-social">
                                 <i class="fa-brands fa-instagram"></i>
                                 <i class="fa-brands fa-facebook"></i>
-                                <i class="fa-brands fa-linkedin"></i>
+                                <a href="https://in.linkedin.com/showcase/khindia/?trk=public_post_feed-actor-name"><i class="fa-brands fa-linkedin"></i>
                             </div>
                         </div>
                         <div class="col-lg-4 col-12">
-                            <div class="footer-newsletter d-flex justify-content-lg-end w-100">
-                                <a href="#"><i class="fa-solid fa-envelope"></i> Newsletter</a>
-                            </div>
+                            <!-- <div class="footer-newsletter d-flex justify-content-lg-end w-100">
+                                <i class="fa-solid fa-envelope"></i> Newsletter</a>
+                            </div> -->
                         </div>
                     </div>
                 </div>
