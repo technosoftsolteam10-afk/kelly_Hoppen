@@ -15,17 +15,17 @@ $washBasinCats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-<div class="map-container">
+<!-- <div class="map-container">
     <img src="<?= BASE_URL ?>assets/img/map-default.jpg" alt="" width="100%">
-    <div class="location-search">
-        <form action="">
+     <div class="location-search">
+         <form action="">
             <div class="form-group">
                 <input type="text" placeholder="Your Nearest Showroom (City, Postcode)">
                 <input type="submit" value="Search">
             </div>
-        </form>
-    </div>
-</div>
+        </form> 
+    </div> 
+</div> -->
 <footer class="footer">
     <div class="section-container">
         <div class="row justify-content-center">

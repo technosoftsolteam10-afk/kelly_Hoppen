@@ -81,7 +81,7 @@
                                                             <h2>Phone</h2>
                                                         </div>
                                                         <div class="item-content">
-                                                            <a href="#">810.222.5439</a>
+                                                            <a href="tel:9909295000">+91 99092 95000</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,25 +127,25 @@
                                             <form action="#" method="post" class="contact-form">
                                                 <div class="contact-us-form">
                                                     <div class="row">
-                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="col-12">
                                                             <label class="required">Name</label><br>
                                                             <span class="form-control-wrap">
                                                                 <input type="text" name="name" value="" class="form-control" aria-required="true" placeholder="Enter Your Name">
                                                             </span>
                                                         </div>
-                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="col-12">
                                                             <label class="required">Email</label><br>
                                                             <span class="form-control-wrap">
                                                                 <input type="email" name="email" value="" class="form-control" aria-required="true" placeholder="Enter Email">
                                                             </span>
                                                         </div>
-                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="col-12">
                                                             <label class="required">Phone Number</label><br>
                                                             <span class="form-control-wrap">
                                                                 <input type="text" name="number" value="" class="form-control" aria-required="true" placeholder="Enter Your Number">
                                                             </span>
                                                         </div>
-                                                        <div class="col-sm-12 col-md-6">
+                                                        <div class="col-12">
                                                             <label class="required">Subject</label><br>
                                                             <span class="form-control-wrap">
                                                                 <input type="text" name="Subject" value="" class="form-control" aria-required="true" placeholder="Enter Subject">

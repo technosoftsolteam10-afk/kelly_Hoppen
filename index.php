@@ -121,7 +121,7 @@
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-12 col-12">
-										<img src="assets/img/products/leadership.jpg" alt="image-bath">
+										<img src="assets/img/products/leardership_p.jpg" alt="image-bath">
 									</div>
 								</div>
 							</div>
@@ -151,11 +151,10 @@
 								</div> -->
 
 									<section class="common-padding kelly-intro pb-0">
-										<div class="kelly-intro-content" >
-												<h3>Trusted partners</h3>
-												<h1>Find Kelly Hoppen showrooms in your area</h1>
+										<div class="kelly-intro-content-a">
+											<a href="<?= BASE_URL ?>designer" class="kelly-big-btn"><h2>Designer & Architect Partnerships</h2>
+											<a href="<?= BASE_URL ?>designer" class="kelly-big-btn">Read More...</a>
 										</div>
-
 									</section>
 								</div>
 						</section>

@@ -4,7 +4,7 @@ include_once 'config/db_conn.php';
 $cateId = isset($_GET['cate']) ? (int)$_GET['cate'] : 0;
 $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $page   = max(1, $page);
-$start=0;
+$start = 0;
 $per_page = 9;
 $start = ($page - 1) * $per_page;
 
@@ -17,13 +17,13 @@ $countSql = "
 ";
 
 if ($cateId > 0) {
-    $countSql .= " AND cate_id = :cate_id";
+	$countSql .= " AND cate_id = :cate_id";
 }
 
 $countStmt = $conn->prepare($countSql);
 
 if ($cateId > 0) {
-    $countStmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
+	$countStmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
 }
 
 $countStmt->execute();
@@ -49,11 +49,11 @@ $sql .= " ORDER BY cate_id ASC LIMIT :start, :per_page";
 $stmt = $conn->prepare($sql);
 
 if (!empty($cateId)) {
-    $stmt->bindValue(':cate_id',$cateId, PDO::PARAM_INT);
+	$stmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
 }
 
 $stmt->bindValue(':start', $start, PDO::PARAM_INT);
-$stmt->bindValue(':per_page',$per_page, PDO::PARAM_INT);
+$stmt->bindValue(':per_page', $per_page, PDO::PARAM_INT);
 
 $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -132,9 +132,8 @@ function slugify($text)
 		.site-header .header-right .search-toggle i {
 			color: #000;
 		}
-		.patination{
 
-		}
+		
 	</style>
 
 </head>
@@ -182,17 +181,20 @@ function slugify($text)
 												<div class="product-box">
 													<div class="product-img">
 														<?php if (!empty($product['img1'])):
-															echo  "<img src='" . BASE_URL . "assets/img/products/" . $product['img1'] .
-																"' alt=" . htmlspecialchars($product['model_name']) . ">";
+															echo '<a href="' . BASE_URL . 'product/' . slugify($product['model_name']) . '/' . $product['id'] . '">
+        															<img src="' . BASE_URL . 'assets/img/products/' . $product['img1'] . '" 
+             														alt="' . htmlspecialchars($product['model_name']) . '">
+     															 </a>';
+
 														else:
 															echo "<img src=" . BASE_URL . "assets/img/products/comingsoon.jpg";
 														endif; ?>
 													</div>
 
 													<div class="product-box-content">
-														<h3><?= htmlspecialchars($product['model_name']); ?></h3>
-														<p><?= htmlspecialchars($product['txt1']); ?></p>
-														<p>Product code <?= htmlspecialchars($product['code']); ?></p>
+														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><h3><?= htmlspecialchars($product['model_name']); ?></h3></a>
+														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><p><?= htmlspecialchars($product['txt1']); ?></p></a>
+														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><p>Product code <?= htmlspecialchars($product['code']); ?></p></a>
 													</div>
 
 													<div class="view-detail">
@@ -203,10 +205,7 @@ function slugify($text)
 												</div>
 											</div>
 										<?php endforeach; ?>
-									<?php else: ?>
-										<div class="col-12 text-center">
-											<p>No products found.</p>
-										</div>
+									
 									<?php endif; ?>
 								</div>
 								<div class="pagination" style="display:flex;justify-content:center;gap: 10px;font-size:25px;">

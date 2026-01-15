@@ -891,16 +891,43 @@ body i[class~="slick-arrow"][class~="fa-angle-right"] {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 14px;
+  gap: 12px;
  
 }
+.kelly-intro-content-a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  margin-left: 20px;
+}
+.kelly-big-btn {
+    
+    color: #000;
+  
+    flex-direction: row;
+    font-size: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
+/* .kelly-big-btn:hover {
+    background-color: #222;
+    transform: translateY(-2px);
+} */
+
 
 .kelly-intro-content h3,
 .kelly-intro-content h1,
 .kelly-intro-content h2 {
   color: #000;
 }
-
+.kelly-intro-content-a h2 {
+  color: #000;
+}
 .kelly-intro-content h3 {
   letter-spacing: 1.8px;
   font-weight: 600;
@@ -1449,6 +1476,10 @@ body i[class~="slick-arrow"][class~="fa-angle-right"] {
 }
 
 /* ************************** Map Container CSS   ***************************/
+.form-button {
+    display: flex;
+    justify-content: flex-start; 
+}
 
 .map-container {
   position: relative;

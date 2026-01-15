@@ -265,12 +265,12 @@ function slugify($text){
                         </section>
                         <?php
                         endif;                        ?>
-                        <section class="shop-details">
+                         <!-- <section class="shop-details">
                             <div class="product-tabs common-padding">
                                 <div class="section-padding">
                                     <div class="section-container p-l-r">
                                         <div class="product-tabs-wrap">
-                                            <!-- <ul class="nav nav-tabs" role="tablist">
+                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-toggle="tab" href="#highlights" role="tab">Highlights</a>
                                                 </li>
@@ -280,8 +280,8 @@ function slugify($text){
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#installation" role="tab">Installation</a>
                                                 </li>
-                                            </ul> -->
-                                            <!-- <div class="tab-content">
+                                            </ul> 
+                                             <div class="tab-content">
                                                 <div class="tab-pane fade show active" id="highlights" role="tabpanel">
                                                     <h2>Design Award</h2>
 
@@ -326,7 +326,7 @@ function slugify($text){
                                                       <?php
                                                 endif;
                                                   ?>
-                                                </div> -->
+                                                </div>
                                                 <div class="tab-pane fade" id="specifications" role="tabpanel">
                                                     <table class="product-attributes">
                                                         <tbody>
@@ -402,7 +402,7 @@ function slugify($text){
                                                                             <input name="submit" type="submit" id="submit" class="submit" value="Submit"> 
                                                                         </p>	
                                                                     </div>
-                                                                </form><!-- #respond -->
+                                                                </form>
                                                             </div>
                                                         </div>
                                                         <div class="clear"></div>
@@ -414,9 +414,9 @@ function slugify($text){
                                 </div>
                             </div>
                         </section>
-					</div>
+					</div> -->
 				</div>
-			</div>
+			</div> 
 		</div>
 
 

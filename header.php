@@ -11,7 +11,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="header-top-box">
 
-            <a href="#">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kkellyhoppen@gmail.com">
 
                 <i class="fa-solid fa-envelope"></i>
 
@@ -23,7 +23,7 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="header-top-box">
 
-            <a href="#">
+            <a href="tel:9909295000">
 
                 <i class="fa-solid fa-phone"></i>
 
