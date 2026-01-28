@@ -247,34 +247,35 @@ function slugify($text)
 <section class="product-grid common-padding pt-0">
 <div class="container">
 <div class="row">
-
-<?php if (!empty($products)): ?>
-<?php foreach ($products as $product): ?>
-<div class="col-lg-4 col-md-6 col-12">
-<div class="product-box">
-
-<div class="product-img">
-<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']) ?>/<?= $product['id'] ?>">
-<img src="<?= BASE_URL ?>assets/img/products/<?= htmlspecialchars($product['img1']) ?>"
-     alt="<?= htmlspecialchars($product['model_name']) ?>">
-</a>
-</div>
-
-<div class="product-box-content">
-<h3><?= htmlspecialchars($product['model_name']) ?></h3>
-<p><?= htmlspecialchars($product['txt1']) ?></p>
-<p>Product code <?= htmlspecialchars($product['code']) ?></p>
-</div>
-
-</div>
-</div>
-<?php endforeach; ?>
-   <?php else: ?>
+   <?php if (!empty($master_cat_slug)&&$master_cat_slug!='wash-basin'): ?>
             <div class="description-text">
                <?= $matched_master_cat['mpc_txt'] ?>
             </div>
+    <?php else:?>
+        <?php if (!empty($products)): ?>
+        <?php foreach ($products as $product): ?>
+        <div class="col-lg-4 col-md-6 col-12">
+        <div class="product-box">
 
-<?php endif; ?>
+        <div class="product-img">
+        <a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']) ?>/<?= $product['id'] ?>">
+        <img src="<?= BASE_URL ?>assets/img/products/<?= htmlspecialchars($product['img1']) ?>"
+            alt="<?= htmlspecialchars($product['model_name']) ?>">
+        </a>
+        </div>
+
+        <div class="product-box-content">
+        <h3><?= htmlspecialchars($product['model_name']) ?></h3>
+        <p><?= htmlspecialchars($product['txt1']) ?></p>
+        <p>Product code <?= htmlspecialchars($product['code']) ?></p>
+        </div>
+
+        </div>
+        </div>
+        <?php endforeach; ?>
+<?php endif; ?>        
+   <?php endif; ?>
+
 
 </div>
 
