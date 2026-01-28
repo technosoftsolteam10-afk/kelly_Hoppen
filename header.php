@@ -1,8 +1,15 @@
 <?php
 include_once 'config/db_conn.php';
+$master_cate_sql="SELECT * FROM master_prd_cat ORDER BY mpc_order  ASC";
+$masCateStmt = $conn->prepare($master_cate_sql);
+$masCateStmt->execute();
+$master_product_cate = $masCateStmt->fetchAll(PDO::FETCH_ASSOC);
+
 $stmt=$conn->prepare("SELECT * FROM master_category");
 $stmt->execute();
 $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 <div class="full-header">
     
@@ -250,25 +257,27 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
                 <div class="custom-sub-cat">
-
+                     <?php if(!empty($master_product_cate)): ?> 
+                            <?php foreach($master_product_cate as $master_cate): ?> 
                     <div class="custom-sub-cat-main">
 
-                        <div class="custom-sub-cat-main-title">
+                        <div class="custom-sub-cat-main-title" onClick="<?= ($master_cate['mpc_slug'] === 'wash-basin') 
+    ? 'return false;' 
+    : "location.href='".BASE_URL."products/".$master_cate['mpc_slug']."'" ?>">
 
-                            <h4>Wash Basin</h4><i class="fa-solid fa-chevron-right"></i>
+                            <h4><?= htmlspecialchars($master_cate['mpc_name']); ?></h4><i class="fa-solid fa-chevron-right"></i>
 
                         </div>
 
-                        <div class="custom-sub-cat-items">
+                       <?php if($master_cate['mpc_slug'] === 'wash-basin'): ?>
+                           <div class="custom-sub-cat-items">
 
                           <?php if(!empty($categories)): ?> 
                                <?php foreach($categories as $category): ?> 
                             <div class="custom-sub-cat-item">
-                                 <h5><a href="<?= BASE_URL ?>products?cate=<?= $category['cate_id']; ?>">
+                                 <h5><a href="<?= BASE_URL ?>products/<?=$master_cate['mpc_slug']?>/<?= $category['cate_slug']; ?>">
                                         <?= htmlspecialchars($category['cate_name']); ?>
-                                    </a></h5>
-                           
-
+                                    </a></h5> 
                             </div>
                            <?php endforeach; ?>   
                          <?php endif; ?>
@@ -278,7 +287,10 @@ $categories=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         </div>
 
+                       <?php endif;?>
                     </div>
+                    <?php endforeach; ?>   
+                    <?php endif; ?>
 
           
           

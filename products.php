@@ -1,106 +1,147 @@
 <?php
-
 include_once 'config/db_conn.php';
-$cateId = isset($_GET['cate']) ? (int)$_GET['cate'] : 0;
-$page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$page   = max(1, $page);
-$start = 0;
-$per_page = 9;
-$start = ($page - 1) * $per_page;
 
 
-$countSql = "
-    SELECT COUNT(*)
-    FROM master_products
-    WHERE img1 IS NOT NULL 
-      AND img1 != ''
-";
+$master_cat_slug=$_GET['category'] ?? null;
 
-if ($cateId > 0) {
-	$countSql .= " AND cate_id = :cate_id";
+$seo_title = "Kelly Hoppen | Luxury Designer Sanitaryware Manufacturer – India & Global";
+$seo_description = "Kelly Hoppen luxury sanitaryware collection for modern bathrooms across India and global markets.";
+$seo_keywords = "Kelly Hoppen, luxury sanitaryware, designer bathroom products";
+$matched_master_cat = [];
+if(!empty($master_cat_slug)){
+    $master_cat_sql="SELECT * FROM master_prd_cat WHERE mpc_slug = :mpc_slug LIMIT 1"; 
+    $masCatStmt = $conn->prepare($master_cat_sql); 
+    $masCatStmt->bindValue(':mpc_slug',$master_cat_slug, PDO::PARAM_STR); 
+    $masCatStmt->execute(); 
+    $matched_master_cat = $masCatStmt->fetch(PDO::FETCH_ASSOC);
+}
+if (!empty($matched_master_cat)) {
+        $seo_title = $matched_master_cat['seo_title'];
+        $seo_description = $matched_master_cat['seo_description'];
+        $seo_keywords = $matched_master_cat['seo_keywords'];
 }
 
-$countStmt = $conn->prepare($countSql);
 
-if ($cateId > 0) {
-	$countStmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
+
+$master_cat_sql="SELECT * FROM master_prd_cat ";
+if(!empty($master_cat_slug)){
+    $master_cat_sql.=" WHERE mpc_slug != :mpc_slug ";
+  
 }
-
-$countStmt->execute();
-$total_records = $countStmt->fetchColumn();
-$total_pages = ceil($total_records / $per_page);
-
-
-
-$sql = "
-    SELECT p.*, c.cate_name
-    FROM master_products p
-    LEFT JOIN master_category c ON p.cate_id = c.cate_id
-    WHERE p.img1 IS NOT NULL AND p.img1 != ''
-";
-
-if (!empty($cateId)) {
-	$sql .= " AND p.cate_id = :cate_id";
+$master_cat_sql.=" ORDER BY mpc_order  ASC";
+$masCatStmt = $conn->prepare($master_cat_sql);
+if (!empty($master_cat_slug)) {
+    $masCatStmt->bindValue(':mpc_slug', $master_cat_slug, PDO::PARAM_STR);
 }
+$masCatStmt->execute();
+$master_product_cat = $masCatStmt->fetchAll(PDO::FETCH_ASSOC);
+if(!empty($master_cat_slug))
+    {
+  array_unshift($master_product_cat, ['mpc_name' => 'All Products','mpc_slug'=>null]);
+    }
 
-$sql .= " ORDER BY cate_id ASC LIMIT :start, :per_page";
+    $product_cat = [];
+     $cat_slug = null;
+    if(!empty($master_cat_slug)&&$master_cat_slug==='wash-basin'){
+        $catSql = "SELECT cate_name AS name, cate_slug AS slug FROM master_category ORDER BY cate_name ASC";
+    $catStmt = $conn->prepare($catSql);
+    $catStmt->execute();
+    $product_cat = $catStmt->fetchAll(PDO::FETCH_ASSOC);
+    array_unshift($product_cat, ['name' => 'All Products','slug'=>null]);
+    $cat_slug = $_GET['subcategory'] ?? null;
+        }
 
 
-$stmt = $conn->prepare($sql);
+    
+    $products = [];
+    $page=0;
+    $total_pages=0;
+  if(empty($master_cat_slug) || $master_cat_slug==='wash-basin')
+    {
+        
+            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+            $page = max(1, $page);
 
-if (!empty($cateId)) {
-	$stmt->bindValue(':cate_id', $cateId, PDO::PARAM_INT);
-}
-
-$stmt->bindValue(':start', $start, PDO::PARAM_INT);
-$stmt->bindValue(':per_page', $per_page, PDO::PARAM_INT);
-
-$stmt->execute();
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
+            $per_page = 9;
+            $start = ($page - 1) * $per_page;
 
 
+            $countSql = "
+                SELECT COUNT(*)
+                FROM master_products mp
+                INNER JOIN master_category mc ON mc.cate_id = mp.cate_id
+                WHERE mp.img1 IS NOT NULL
+                AND mp.img1 != ''
+            ";
+
+            if (!empty($cat_slug)) {
+                $countSql .= " AND mc.cate_slug = :cate_slug";
+            }
+
+            $countStmt = $conn->prepare($countSql);
+
+            if (!empty($cat_slug)) {
+                $countStmt->bindValue(':cate_slug', $cat_slug, PDO::PARAM_STR);
+            }
+
+            $countStmt->execute();
+            $total_records = (int) $countStmt->fetchColumn();
+            $total_pages = ceil($total_records / $per_page);
+
+
+            $sql = "
+                SELECT p.*, c.cate_name
+                FROM master_products p
+                INNER JOIN master_category c ON p.cate_id = c.cate_id
+                WHERE p.img1 IS NOT NULL
+                AND p.img1 != ''
+            ";
+
+            if (!empty($cat_slug)) {
+                $sql .= " AND c.cate_slug = :cate_slug";
+            }
+
+            $sql .= " ORDER BY p.model_name ASC LIMIT :start, :per_page";
+
+            $stmt = $conn->prepare($sql);
+
+            if (!empty($cat_slug)) {
+                $stmt->bindValue(':cate_slug', $cat_slug, PDO::PARAM_STR);
+            }
+
+            $stmt->bindValue(':start', $start, PDO::PARAM_INT);
+            $stmt->bindValue(':per_page', $per_page, PDO::PARAM_INT);
+
+            $stmt->execute();
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+  
+ 
+    
+    
 
 
 function slugify($text)
 {
-
-	$text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-
-	$text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
-
-
-	$text = preg_replace('~[^-\w]+~', '', $text);
-
-
-	$text = trim($text, '-');
-
-
-	$text = preg_replace('~-+~', '-', $text);
-
-
-	$text = strtolower($text);
-
-	return $text;
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    $text = iconv('UTF-8', 'ASCII//TRANSLIT', $text);
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    return strtolower($text);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<!-- Meta Data -->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Kelly Hoppen | Luxury Designer Sanitaryware Manufacturer – India & Global</title>
+	<title><?= htmlspecialchars($seo_title) ?></title>
 
-	<meta name="keywords" content="Kelly Hoppen">
-	<meta name="description" content="Kelly Hoppen">
+    <meta name="description" content="<?= htmlspecialchars($seo_description) ?>">
+    <meta name="keywords" content="<?= htmlspecialchars($seo_keywords) ?>">
 
 	<?php include 'links.php'; ?>
 
@@ -132,6 +173,18 @@ function slugify($text)
 		.site-header .header-right .search-toggle i {
 			color: #000;
 		}
+	
+         .description-text h3{
+            text-align:center;
+            font-size:40px;
+
+         }
+        .description-text p{
+            font-size:20px;
+            color:black;
+            text-align:justify;
+        }
+       
 
 		
 	</style>
@@ -139,9 +192,9 @@ function slugify($text)
 </head>
 
 <body class="home home-3 title-3">
-	<div id="page" class="hfeed page-wrapper">
+<div id="page" class="hfeed page-wrapper">
 
-		<?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
 
 		<div id="site-main" class="site-main">
 			<div id="main-content" class="main-content">
@@ -150,138 +203,115 @@ function slugify($text)
 						<section class="breadcrumb">
 							<div class="container">
 								<div class="breadcrumb-content">
-									<h1>Wash basins</h1>
+                                     <?php if (!empty($matched_master_cat)): ?>
+                                         <h1><?= htmlspecialchars($matched_master_cat['mpc_name']) ?></h1>
+                                        <?php else: ?>
+                                         <h1>All Products</h1>
+                                        <?php endif;?>
+								  <?php if (!empty($master_product_cat)): ?>
 
-									<?php if (!empty($products) && !empty($products[0]['cate_name'])): ?>
-										– <?= htmlspecialchars($products[0]['cate_name']); ?>
-									<?php endif; ?>
+        <div class="product-category-filter">
+            <?php foreach ($master_product_cat as $master_cat): ?>
+              <a href="<?= empty($master_cat['mpc_slug']) 
+                            ? BASE_URL.'products/' 
+                            : BASE_URL.'products/'.$master_cat['mpc_slug']; ?>"
+                   class="item <?= (
+                        (!empty($master_cat_slug) && $master_cat_slug === $master_cat['mpc_slug']) ||
+                        (empty($master_cat_slug) && empty($master_cat['mpc_slug']))
+                   ) ? 'active' : '' ?>">
+                   <?= htmlspecialchars($master_cat['mpc_name']); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+       <?php if (!empty($product_cat)): ?>
+        <div class="product-category-filter">
+            <?php foreach ($product_cat as $category): ?>
+              <a href="<?= empty($category['slug']) 
+                            ? BASE_URL.'products/'.$master_cat_slug.'/' 
+                            : BASE_URL.'products/'.$master_cat_slug.'/' .$category['slug']; ?>"
+                   class="item <?= (
+                        (!empty($cat_slug) && $cat_slug === $category['slug']) ||
+                        (empty($cat_slug) && empty($category['slug']))
+                   ) ? 'active' : '' ?>">
+                   <?= htmlspecialchars($category['name']); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+     
+        <?php endif; ?>
+    </div>
+</section>
+
+<section class="product-grid common-padding pt-0">
+<div class="container">
+<div class="row">
+
+<?php if (!empty($products)): ?>
+<?php foreach ($products as $product): ?>
+<div class="col-lg-4 col-md-6 col-12">
+<div class="product-box">
+
+<div class="product-img">
+<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']) ?>/<?= $product['id'] ?>">
+<img src="<?= BASE_URL ?>assets/img/products/<?= htmlspecialchars($product['img1']) ?>"
+     alt="<?= htmlspecialchars($product['model_name']) ?>">
+</a>
+</div>
+
+<div class="product-box-content">
+<h3><?= htmlspecialchars($product['model_name']) ?></h3>
+<p><?= htmlspecialchars($product['txt1']) ?></p>
+<p>Product code <?= htmlspecialchars($product['code']) ?></p>
+</div>
+
+</div>
+</div>
+<?php endforeach; ?>
+   <?php else: ?>
+            <div class="description-text">
+               <?= $matched_master_cat['mpc_txt'] ?>
+            </div>
+
+<?php endif; ?>
+
+</div>
 
 
-									<!-- <div class="product-category-filter">
-										<a href="#" class="item active">All Products</a>
-										<a href="#" class="item">Showers</a>
-										<a href="#" class="item">Bath Mixers</a>
-										<a href="#" class="item">Thermostatic Mixer</a>
-										<a href="#" class="item">Bath Accessories</a>
-										<a href="#" class="item">Wash Basin & Bath Tubs</a>
-										<a href="#" class="item">Installation Technology</a>
-										<a href="#" class="item">Waste System</a>
-										<a href="#" class="item">Collection</a>
-									</div> -->
-								</div>
-							</div>
-						</section>
+<div class="pagination" style="display:flex;justify-content:center;gap:10px;font-size:25px;">
+<?php
+$baseUrl = BASE_URL . 'products/';
+if (!empty($master_cat_slug)) {
+    $baseUrl .= $master_cat_slug;
+}
+if (!empty($cat_slug)) {
+    $baseUrl .= '/' . $cat_slug;
+}
+?>
 
-						<section class="product-grid common-padding pt-0">
-							<div class="container">
-								<div class="row">
-									<?php if (!empty($products)): ?>
-										<?php foreach ($products as $product): ?>
-											<div class="col-lg-4 col-md-6 col-12">
-												<div class="product-box">
-													<div class="product-img">
-														<?php if (!empty($product['img1'])):
-															echo '<a href="' . BASE_URL . 'product/' . slugify($product['model_name']) . '/' . $product['id'] . '">
-        															<img src="' . BASE_URL . 'assets/img/products/' . $product['img1'] . '" 
-             														alt="' . htmlspecialchars($product['model_name']) . '">
-     															 </a>';
+<?php if ($page > 1): ?>
+    <a href="<?= $baseUrl ?>?page=<?= $page - 1 ?>">&laquo; Prev</a>
+<?php endif; ?>
 
-														else:
-															echo "<img src=" . BASE_URL . "assets/img/products/comingsoon.jpg";
-														endif; ?>
-													</div>
+<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+    <a href="<?= $baseUrl ?>?page=<?= $i ?>"
+       class="<?= $i === $page ? 'active' : '' ?>">
+       <?= $i ?>
+    </a>
+<?php endfor; ?>
 
-													<div class="product-box-content">
-														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><h3><?= htmlspecialchars($product['model_name']); ?></h3></a>
-														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><p><?= htmlspecialchars($product['txt1']); ?></p></a>
-														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>"><p>Product code <?= htmlspecialchars($product['code']); ?></p></a>
-													</div>
+<?php if ($page < $total_pages): ?>
+    <a href="<?= $baseUrl ?>?page=<?= $page + 1 ?>">Next &raquo;</a>
+<?php endif; ?>
+</div>
 
-													<div class="view-detail">
-														<a href="<?= BASE_URL ?>product/<?= slugify($product['model_name']); ?>/<?= $product['id']; ?>">
-															<i class="fa fa-eye"></i> View Detail
-														</a>
-													</div>
-												</div>
-											</div>
-										<?php endforeach; ?>
-									
-									<?php endif; ?>
-								</div>
-								<div class="pagination" style="display:flex;justify-content:center;gap: 10px;font-size:25px;">
-									<?php if ($page > 1):
-										echo '<a href="?page=' . ($page - 1) . '&cate=' . $cateId . '"><< Prev</a>';
-									endif;
+</div>
+</section>
 
-									for ($i = 1; $i <= $total_pages; $i++):
-										echo '<a href="?page=' . $i . '&cate=' . $cateId . '">' . $i . '</a>';
+<?php include 'footer.php'; ?>
+<?php include 'scripts.php'; ?>
 
-									endfor;
-
-									if ($page < $total_pages):
-										echo '<a href="?page=' . ($page + 1) . '&cate=' . $cateId . '">Next >></a>';
-									endif; ?>
-								</div>
-
-
-
-
-
-							</div>
-					</div>
-					</section>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<?php include 'footer.php'; ?>
-
-	</div>
-
-	<div id="productPopup" class="product-popup-container">
-		<div class="product-popup">
-			<div class="popup-container">
-				<div class="row align-items-center">
-					<div class="col-md-6 col-12">
-						<div class="popup-left">
-							<h4 class="popup-subtitle" id="productpopup-subtitle">AXOR ONE</h4>
-							<h2 class="popup-title" id="productpopup-title">Hand shower 75 1jet EcoSmart</h2>
-							<img src="assets/Products/DERBAN.jpg" id="productpopup-img" alt="Hand Shower" class="popup-image">
-						</div>
-					</div>
-					<div class="col-md-6 col-12">
-						<!-- Right Side -->
-						<div class="popup-right">
-							<p class="popup-finish">Finish <span class="active-finish">Chrome</span></p>
-
-							<!-- Color options -->
-							<div class="popup-colors">
-								<span class="color-circle active" style="background:#d9d9d9;"></span>
-								<span class="color-circle" style="background:#c5a572;"></span>
-								<span class="color-circle" style="background:#a67c52;"></span>
-								<span class="color-circle" style="background:#000;"></span>
-								<span class="color-circle" style="background:#999;"></span>
-							</div>
-
-							<p class="popup-art">Art. no. <strong>48651000</strong></p>
-
-							<!-- Buttons -->
-							<button class="popup-btn">Find a specialist dealer</button>
-							<div class="popup-links">
-								<a href="#">♡ Add to Notepad</a>
-								<a href="#">⇆ Compare Products</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="popup-close" id="popupClose"><i class="fa-solid fa-xmark"></i></div>
-		</div>
-	</div>
-
-	<?php include 'scripts.php'; ?>
-
+</div>
 </body>
-
 </html>

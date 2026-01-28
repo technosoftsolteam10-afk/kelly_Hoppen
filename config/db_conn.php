@@ -16,5 +16,5 @@ $database="kelly_hoppen";
 catch(PDOException  $e){
       die("Database connection failed: " . $e->getMessage());
 }
-define("BASE_URL","http://localhost/apps/naimisha/kelly_hopen/");
+define("BASE_URL","http://localhost/Nisarg/kelly_Hoppen/");
 ?>

@@ -7,4 +7,8 @@ RewriteRule ^about-us$ about-us.php [L]
 RewriteRule ^brand$ brand.php [L]
 RewriteRule ^designer$ designer_architect.php [L]
 RewriteRule ^product/([a-zA-Z0-9_-]+)/([0-9]+)$ product-detail.php?model=$1&id=$2 [L]
-RewriteRule ^products$ products.php [L]
+
+
+RewriteRule ^products/?$ products.php [L,QSA]
+RewriteRule ^products/([^/]+)/?$ products.php?category=$1 [L,QSA]
+RewriteRule ^products/([^/]+)/([^/]+)/?$ products.php?category=$1&subcategory=$2 [L,QSA] 
